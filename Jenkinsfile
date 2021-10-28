@@ -32,11 +32,7 @@ pipeline {
             }
         stage('Stage 5 - Test existing files on nginx') {
             steps {
-                script {
-                    final String url = "http://localhost:80/test_file01.txt"
-                    final String response = sh(script: "curl -s $url", returnStdout: true).trim()
-
-                    echo response
+                sh " curl -X POST -d {"body":"Jenkinspipleinecomment"} http://localhost/test_file01.txt"
             }
         }
     }
