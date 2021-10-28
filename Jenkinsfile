@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Stage 1 - Create text files') {
             steps {
+                sh "echo pwd"
                 sh "mkdir stage1"
                 sh "cd stage1"
                 sh "touch test_file{01..010}.txt"
