@@ -6,7 +6,6 @@ pipeline {
                 sh "pwd"
                 sh "mkdir -p /home/ec2-user/stage1/"
                 sh "cd /home/ec2-user/stage1/ && touch test_file{01..010}.txt"
-                sh "chmod 777 -R /home/ec2-user/stage1/"
                 sh '''
                     echo "this is a test file" | tee test_file{01..010}.txt
                 '''
