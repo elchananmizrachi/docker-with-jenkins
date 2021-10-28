@@ -4,6 +4,7 @@ pipeline {
         stage('Stage 1 - Create text files') {
             steps {
                 sh "pwd"
+                sh "rm -rf stage1"
                 sh "mkdir stage1"
                 sh "cd stage1"
                 sh "touch test_file{01..010}.txt"
