@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh "mkdir -p /home/ec2-user/stage1/stage2/"
                 sh  "cd /home/ec2-user/stage1/stage2/"
-                sh "cp /home/ec2-user/stage1/*.txt ."
+                sh "cp /home/ec2-user/stage1/*.txt /home/ec2-user/stage1/stage2/."
                 sh ''' echo "$(date +"%FT%T")" && tee test_file{01..010}.txt '''
             }
         }
