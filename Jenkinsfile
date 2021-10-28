@@ -33,13 +33,6 @@ pipeline {
                 sh "docker run -d -p 80:80 -v /home/ec2-user/stage1/stage2/stage3:/usr/share/nginx/html --hostname my-web-app nginx"
             }
         }
-        stage('Stage 5 - Test existing files on nginx') {
-            steps {
-                sh '''
-                "curl -X POST -d {"body":"Jenkinspipleinecomment"} http://localhost/test_file001.txt"
-                '''
-            }
-        }
     }
 }
 
