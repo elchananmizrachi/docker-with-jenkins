@@ -18,11 +18,25 @@ pipeline {
                 sh ''' echo "$(date +"%FT%T")" && tee test_file{01..010}.txt '''
             }
         }
-        stage('Stage 3 -Change permissions to ro') {
+        stage('Stage 3 - Change permissions to ro') {
             steps {
                 sh "mkdir -p /home/ec2-user/stage1/stage2/stage3/ && cd /home/ec2-user/stage1/stage2/stage3/"
                 sh "cp /home/ec2-user/stage1/stage2/*.txt ."
                 sh "chmod 0444 *.txt"
+            }
+        stage('Stage 4 - Build nginx docker image') {
+            steps {
+                sh "cd /home/ec2-user/"
+                sh "docker build -t my-web-app ."
+                sh "docker run -d -p 80:80 -v /home/ec2-user/stage1/stage2/stage3:/usr/share/nginx/html --hostname my-web-app nginx"
+            }
+        stage('Stage 5 - Test existing files on nginx') {
+            steps {
+                script {
+                    final String url = "http://localhost:80/test_file01.txt"
+                    final String response = sh(script: "curl -s $url", returnStdout: true).trim()
+
+                    echo response
             }
         }
     }
