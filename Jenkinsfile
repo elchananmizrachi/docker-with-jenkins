@@ -6,7 +6,9 @@ pipeline {
                 sh "mkdir stage1"
                 sh "cd stage1"
                 sh "touch test_file{01..010}.txt"
-                sh "echo "this is a test file" | tee test_file{01..010}.txt"
+                sh '''
+                    echo "this is a test file" | tee test_file{01..010}.txt
+                '''
             }
         }
         stage('Copy and insert date to files') {
