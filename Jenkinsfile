@@ -6,14 +6,16 @@ pipeline {
                 sh "pwd"
                 sh "mkdir -p /home/ec2-user/stage1/"
                 sh "cd /home/ec2-user/stage1/ && touch test_file{01..010}.txt"
+                sh "chmod 777 -R /home/ec2-user/stage1/"
                 sh '''
-                    echo "this is a test file" | tee test_file{01..010}.txt
+                    sudo echo "this is a test file" | tee test_file{01..010}.txt
                 '''
             }
         }
         stage('Stage 2 - Copy and insert date to files') {
             steps {
-                sh "mkdir -p /home/ec2-user/stage1/stage2/ && cd /home/ec2-user/stage1/stage2/"
+                sh "mkdir -p /home/ec2-user/stage1/stage2/"
+                sh  "cd /home/ec2-user/stage1/stage2/"
                 sh "cp /home/ec2-user/stage1/*.txt ."
                 sh ''' echo "$(date +"%FT%T")" && tee test_file{01..010}.txt '''
             }
@@ -41,3 +43,5 @@ pipeline {
         }
     }
 }
+
+
