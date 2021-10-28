@@ -34,8 +34,9 @@ pipeline {
         }
         stage('Stage 5 - Test existing files on nginx') {
             steps {
-                sh " curl -X POST -d {"body":"Jenkinspipleinecomment"} http://localhost/test_file01.txt"
-
+                sh '''
+                "curl -X POST -d {"body":"Jenkinspipleinecomment"} http://localhost/test_file01.txt"
+                '''
             }
         }
     }
