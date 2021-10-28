@@ -1,5 +1,5 @@
 pipeline {
-    agent slave
+    agent {label 'slave'}
     stages {
         stage('Stage 1 - Create text files') {
             steps {
