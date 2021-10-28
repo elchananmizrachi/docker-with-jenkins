@@ -16,8 +16,8 @@ pipeline {
         stage('Copy and insert date to files') {
             steps {
                 sh "mkdir stage1/stage2/"
-                sh "cd stage1/stage2/"
-                sh "cp stage1/*.*.txt stage1/stage2/"
+                sh "cd stage1/"
+                sh "cp *.txt stage2/"
                 sh '''
                     echo $(date +"%FT%T")" | tee test_file{01..010}.txt
                 '''
