@@ -14,7 +14,9 @@ pipeline {
                 sh "mkdir stage1/stage2/"
                 sh "cd mkdir stage1/stage2/"
                 sh "cp stage1/*.txt stage1/stage2/"
-                sh "echo $(date +"%FT%T") | tee test_file{01..010}.txt"
+                sh '''
+                    echo $(date +"%FT%T")" | tee test_file{01..010}.txt
+                '''
 
             }
         }
