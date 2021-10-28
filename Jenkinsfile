@@ -21,6 +21,7 @@ pipeline {
         stage('Stage 3 -Change permissions to ro') {
             steps {
                 sh "mkdir -p /home/ec2-user/stage1/stage2/stage3/ && cd /home/ec2-user/stage1/stage2/stage3/"
+                sh "cp /home/ec2-user/stage1/stage2/*.txt ."
                 sh "chmod 0444 *.txt"
             }
         }
