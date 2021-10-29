@@ -1,0 +1,6 @@
+This repo atendend to exercise a simple Jenkins pipeline job with Docker build.
+
+Stage 1 - create 10 files with text.
+Stage 2 - Copy files from previous stage, insert time, date, time zone, to the files
+Stage 3 - Copy files from previous stage, make those files read-only.
+Stage 4 - Build new image based on nginx image & Run container with mounted directory with files from Stage 3
